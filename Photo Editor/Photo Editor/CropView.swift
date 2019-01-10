@@ -90,7 +90,7 @@ open class CropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, 
             }
         }
     }
-    open var resizeEnabled = true {
+    open var resizeEnabled = false {
         didSet {
             cropRectView.enableResizing(resizeEnabled)
         }
