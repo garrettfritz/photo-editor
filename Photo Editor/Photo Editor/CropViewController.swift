@@ -8,13 +8,13 @@
 
 import UIKit
 
-public protocol CropViewControllerDelegate: class {
-    func cropViewController(_ controller: CropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect)
-    func cropViewControllerDidCancel(_ controller: CropViewController)
+public protocol OldCropViewControllerDelegate: class {
+    func cropViewController(_ controller: OldCropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect)
+    func cropViewControllerDidCancel(_ controller: OldCropViewController)
 }
 
-open class CropViewController: UIViewController {
-    open weak var delegate: CropViewControllerDelegate?
+open class OldCropViewController: UIViewController {
+    open weak var delegate: OldCropViewControllerDelegate?
     open var image: UIImage? {
         didSet {
             cropView?.image = image
@@ -86,8 +86,8 @@ open class CropViewController: UIViewController {
 
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.toolbar.isTranslucent = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CropViewController.cancel(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CropViewController.done(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(OldCropViewController.cancel(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(OldCropViewController.done(_:)))
         
 //        if self.toolbarItems == nil {
 //            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)

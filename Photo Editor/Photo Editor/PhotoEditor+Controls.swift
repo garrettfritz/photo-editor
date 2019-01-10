@@ -30,7 +30,7 @@ extension PhotoEditorViewController {
     }
 
     @IBAction func cropButtonTapped(_ sender: UIButton) {
-        let controller = CropViewController()
+        let controller = OldCropViewController()
         controller.delegate = self
         controller.image = image
         let navController = UINavigationController(rootViewController: controller)

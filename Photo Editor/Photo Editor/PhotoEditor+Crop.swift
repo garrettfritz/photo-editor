@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 // MARK: - CropView
-extension PhotoEditorViewController: CropViewControllerDelegate {
+extension PhotoEditorViewController: OldCropViewControllerDelegate {
     
-    public func cropViewController(_ controller: CropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
+    public func cropViewController(_ controller: OldCropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
         controller.dismiss(animated: true, completion: nil)
         self.setImageView(image: image)
     }
     
-    public func cropViewControllerDidCancel(_ controller: CropViewController) {
+    public func cropViewControllerDidCancel(_ controller: OldCropViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
     
