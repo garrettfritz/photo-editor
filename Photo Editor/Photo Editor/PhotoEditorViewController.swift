@@ -18,6 +18,7 @@ public final class PhotoEditorViewController: UIViewController {
     //To hold the drawings and stickers
     @IBOutlet weak var canvasImageView: UIImageView!
 
+    @IBOutlet weak var sliderContainer: UIView!
     @IBOutlet weak var topToolbar: UIView!
     @IBOutlet weak var bottomToolbar: UIView!
 
@@ -36,6 +37,7 @@ public final class PhotoEditorViewController: UIViewController {
     @IBOutlet weak var cropButton: UIButton!
     @IBOutlet weak var stickerButton: UIButton!
     @IBOutlet weak var drawButton: UIButton!
+    @IBOutlet weak var eraserButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
@@ -60,8 +62,18 @@ public final class PhotoEditorViewController: UIViewController {
     var stickersVCIsVisible = false
     var drawColor: UIColor = UIColor.black
     var drawSize: CGFloat = 15.0
+    static var accentColor: UIColor = UIColor.red
     var textColor: UIColor = UIColor.white
     var isDrawing: Bool = false
+    var isErasing: Bool = false {
+        
+        didSet {
+            
+            eraserButton.tintColor = isErasing ? PhotoEditorViewController.accentColor : .white
+            
+        }
+    
+    }
     var lastPoint: CGPoint!
     var swiped = false
     var lastPanPoint: CGPoint?
@@ -85,6 +97,7 @@ public final class PhotoEditorViewController: UIViewController {
         super.viewDidLoad()
         self.setImageView(image: image!)
         
+        drawColor = colors.first ?? .black
         deleteView.layer.cornerRadius = deleteView.bounds.height / 2
         deleteView.layer.borderWidth = 2.0
         deleteView.layer.borderColor = UIColor.white.cgColor
@@ -143,10 +156,18 @@ public final class PhotoEditorViewController: UIViewController {
 }
 
 extension PhotoEditorViewController: ColorDelegate {
+    
+    func getSelectedColor() -> UIColor {
+    
+        return drawColor
+    
+    }
+    
    
     
     func didSelectColor(color: UIColor) {
      
+        isErasing = false
         if isDrawing {
             self.drawColor = color
         } else if activeTextView != nil {

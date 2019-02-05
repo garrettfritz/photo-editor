@@ -42,6 +42,7 @@ class ColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         colorDelegate?.didSelectColor(color: colors[indexPath.item])
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,6 +52,8 @@ class ColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionViewCell", for: indexPath) as! ColorCollectionViewCell
         cell.colorView.backgroundColor = colors[indexPath.item]
+        cell.isSelected =  colors[indexPath.item] == (colorDelegate?.getSelectedColor() ?? .clear)
+        
         return cell
     }
     

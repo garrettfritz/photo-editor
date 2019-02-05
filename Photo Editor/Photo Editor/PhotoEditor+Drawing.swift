@@ -67,8 +67,14 @@ extension PhotoEditorViewController {
             // 3
             context.setLineCap( CGLineCap.round)
             context.setLineWidth(drawSize)
-            context.setStrokeColor(drawColor.cgColor)
-            context.setBlendMode( CGBlendMode.normal)
+            if isErasing {
+                
+                context.setBlendMode(.clear)
+                
+            } else {
+                context.setStrokeColor(drawColor.cgColor)
+                context.setBlendMode( CGBlendMode.normal)
+            }
             // 4
             context.strokePath()
             // 5

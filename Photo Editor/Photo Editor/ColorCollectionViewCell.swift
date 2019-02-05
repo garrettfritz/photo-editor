@@ -12,6 +12,7 @@ class ColorCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var colorView: UIView!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,12 +21,16 @@ class ColorCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         colorView.layer.cornerRadius = colorView.frame.width / 2
         colorView.clipsToBounds = true
-        colorView.layer.borderWidth = 1.0
-        colorView.layer.borderColor = UIColor.white.cgColor
+        colorView.layer.borderWidth = isSelected ? 3.0 : 1.0
+        colorView.layer.borderColor = isSelected ? PhotoEditorViewController.accentColor.cgColor : UIColor.white.cgColor
     }
     
     override var isSelected: Bool {
         didSet {
+            
+            colorView.layer.borderWidth = isSelected ? 3.0 : 1.0
+            colorView.layer.borderColor = isSelected ? PhotoEditorViewController.accentColor.cgColor : UIColor.white.cgColor
+            
             if isSelected {
                 let previouTransform =  colorView.transform
                 UIView.animate(withDuration: 0.2,

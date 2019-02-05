@@ -50,9 +50,24 @@ extension PhotoEditorViewController {
         
     }
     
+    @IBAction func eraserButtonTapped(_ sender: UIButton) {
+        
+        guard !isErasing else {
+            
+            isErasing = false
+            return
+            
+        }
+        isDrawing = true
+        isErasing = true
+        canvasImageView.isUserInteractionEnabled = false
+        doneButton.isHidden = false
+        colorPickerView.isHidden = false
+        hideToolbar(hide: true)
+    }
     
     @IBAction func drawButtonTapped(_ sender: Any) {
-        sizeSlider.isHidden = false
+        sliderContainer.isHidden = false
         isDrawing = true
         canvasImageView.isUserInteractionEnabled = false
         doneButton.isHidden = false
@@ -61,7 +76,7 @@ extension PhotoEditorViewController {
     }
 
     @IBAction func textButtonTapped(_ sender: Any) {
-        sizeSlider.isHidden = true
+        sliderContainer.isHidden = true
         isTyping = true
         let textView = UITextView(frame: CGRect(x: 0, y: canvasImageView.center.y,
                                                 width: UIScreen.main.bounds.width, height: 30))

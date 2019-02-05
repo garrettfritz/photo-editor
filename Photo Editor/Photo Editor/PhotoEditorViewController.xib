@@ -29,11 +29,13 @@
                 <outlet property="deleteView" destination="yAt-sK-1nK" id="0Jn-1A-WAT"/>
                 <outlet property="doneButton" destination="KxU-y4-Jwh" id="19z-FV-eWC"/>
                 <outlet property="drawButton" destination="Qm4-f6-DBr" id="yHl-a1-GgN"/>
+                <outlet property="eraserButton" destination="t2b-A9-e2d" id="s2h-ZR-0Hu"/>
                 <outlet property="imageView" destination="5rw-9v-ExQ" id="5lP-en-DGc"/>
                 <outlet property="imageViewHeightConstraint" destination="DdY-qb-dfp" id="ZY9-Em-cs4"/>
                 <outlet property="saveButton" destination="mW4-Jz-sic" id="1Uj-nU-EU1"/>
                 <outlet property="shareButton" destination="zlw-H0-WcJ" id="OZv-z0-8s8"/>
                 <outlet property="sizeSlider" destination="rtr-gk-uxr" id="7j6-zT-29G"/>
+                <outlet property="sliderContainer" destination="QdW-co-Xtd" id="EFJ-lu-TFT"/>
                 <outlet property="stickerButton" destination="PLX-iy-2Rc" id="tzt-tW-R1r"/>
                 <outlet property="textButton" destination="0wH-LJ-SyD" id="ofN-bp-ZaE"/>
                 <outlet property="topGradient" destination="rLz-36-0xz" id="0Yd-em-MMy"/>
@@ -277,19 +279,41 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-co-Xtd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
                                     <subviews>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="35" translatesAutoresizingMaskIntoConstraints="NO" id="rtr-gk-uxr">
-                                            <rect key="frame" x="18" y="8" width="378" height="47"/>
-                                            <connections>
-                                                <action selector="sliderChanged:" destination="-1" eventType="valueChanged" id="5ny-Y0-lh4"/>
-                                            </connections>
-                                        </slider>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZpB-a9-yYe">
+                                            <rect key="frame" x="20" y="8" width="374" height="46"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2b-A9-e2d">
+                                                    <rect key="frame" x="0.0" y="3" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="eFM-Zd-jNT"/>
+                                                        <constraint firstAttribute="width" constant="40" id="uUm-Oa-z2O"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    <size key="titleShadowOffset" width="1" height="0.0"/>
+                                                    <state key="normal" image="eraser">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.1532266695" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="eraserButtonTapped:" destination="-1" eventType="touchUpInside" id="lqa-3x-nHL"/>
+                                                    </connections>
+                                                </button>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="35" translatesAutoresizingMaskIntoConstraints="NO" id="rtr-gk-uxr">
+                                                    <rect key="frame" x="54" y="8" width="322" height="31"/>
+                                                    <connections>
+                                                        <action selector="sliderChanged:" destination="-1" eventType="valueChanged" id="5ny-Y0-lh4"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="rtr-gk-uxr" firstAttribute="top" secondItem="QdW-co-Xtd" secondAttribute="top" constant="8" id="Dz6-Rd-HV9"/>
-                                        <constraint firstAttribute="trailing" secondItem="rtr-gk-uxr" secondAttribute="trailing" constant="20" id="O97-B0-wIG"/>
-                                        <constraint firstAttribute="bottom" secondItem="rtr-gk-uxr" secondAttribute="bottom" constant="8" id="l4e-gf-tcL"/>
-                                        <constraint firstItem="rtr-gk-uxr" firstAttribute="leading" secondItem="QdW-co-Xtd" secondAttribute="leading" constant="20" id="oG3-ln-UKs"/>
+                                        <constraint firstItem="ZpB-a9-yYe" firstAttribute="top" secondItem="QdW-co-Xtd" secondAttribute="top" constant="8" id="GXs-GR-VN2"/>
+                                        <constraint firstItem="ZpB-a9-yYe" firstAttribute="leading" secondItem="QdW-co-Xtd" secondAttribute="leading" constant="20" id="NuG-ge-JBv"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZpB-a9-yYe" secondAttribute="bottom" constant="8" id="p9I-hi-YFn"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZpB-a9-yYe" secondAttribute="trailing" constant="20" id="xpe-g5-GDL"/>
                                     </constraints>
                                 </view>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GaQ-XR-asZ">
@@ -349,4 +373,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="eraser" width="413" height="438"/>
+    </resources>
 </document>
