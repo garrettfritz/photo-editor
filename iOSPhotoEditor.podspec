@@ -17,6 +17,6 @@ with the ability to scale and rotate objects
   s.ios.deployment_target = '9.0'
   s.source_files = "Photo Editor/Photo Editor/**/*.{swift}"
   s.exclude_files = "Photo Editor/Photo Editor/**/AppDelegate.swift"
-  s.resources = "Photo Editor/Photo Editor/**/*.{png,jpeg,jpg,storyboard,xib,ttf}"
+  s.resources = "Photo Editor/Photo Editor/**/*.{png,jpeg,jpg,pdf,storyboard,xib,ttf}"
 
 end
