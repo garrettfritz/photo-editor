@@ -84,7 +84,7 @@ public final class PhotoEditorViewController: UIViewController {
     var imageViewToPan: UIImageView?
     var isTyping: Bool = false
     
-    
+  
     var stickersViewController: StickersViewController!
 
     //Register Custom font before we load XIB
@@ -96,6 +96,11 @@ public final class PhotoEditorViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.setImageView(image: image!)
+        
+        let bundle = Bundle(for: type(of: self))
+         let eraserImage = UIImage(named: "eraser", in: bundle, compatibleWith: nil)
+        
+        eraserButton.setImage(eraserImage?.withRenderingMode(.alwaysTemplate) , for: .normal)
         
         drawColor = colors.first ?? .black
         deleteView.layer.cornerRadius = deleteView.bounds.height / 2

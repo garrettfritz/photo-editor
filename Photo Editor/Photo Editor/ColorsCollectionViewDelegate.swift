@@ -42,7 +42,7 @@ class ColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         colorDelegate?.didSelectColor(color: colors[indexPath.item])
-        
+        collectionView.reloadData()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

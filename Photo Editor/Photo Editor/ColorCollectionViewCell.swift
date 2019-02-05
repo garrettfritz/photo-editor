@@ -26,25 +26,14 @@ class ColorCollectionViewCell: UICollectionViewCell {
     }
     
     override var isSelected: Bool {
+        
         didSet {
             
+            colorView.layer.cornerRadius = colorView.frame.width / 2
             colorView.layer.borderWidth = isSelected ? 3.0 : 1.0
             colorView.layer.borderColor = isSelected ? PhotoEditorViewController.accentColor.cgColor : UIColor.white.cgColor
             
-            if isSelected {
-                let previouTransform =  colorView.transform
-                UIView.animate(withDuration: 0.2,
-                               animations: {
-                                self.colorView.transform = self.colorView.transform.scaledBy(x: 1.3, y: 1.3)
-                },
-                               completion: { _ in
-                                UIView.animate(withDuration: 0.2) {
-                                    self.colorView.transform  = previouTransform
-                                }
-                })
-            } else {
-                // animate deselection
-            }
+            
         }
     }
 }
