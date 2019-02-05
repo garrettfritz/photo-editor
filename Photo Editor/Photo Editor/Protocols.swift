@@ -51,4 +51,5 @@ protocol StickersViewControllerDelegate {
  */
 protocol ColorDelegate {
     func didSelectColor(color: UIColor)
+    func didSelectSize(size: CGFloat)
 }

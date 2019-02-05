@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoEditorViewController" customModule="iOSPhotoEditor" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoEditorViewController" customModule="Photo_Editor" customModuleProvider="target">
             <connections>
                 <outlet property="bottomGradient" destination="ZGa-1B-gkO" id="pYn-g8-ak7"/>
                 <outlet property="bottomToolbar" destination="87h-1G-t5q" id="Pzi-Dw-qOq"/>
@@ -33,6 +33,7 @@
                 <outlet property="imageViewHeightConstraint" destination="DdY-qb-dfp" id="ZY9-Em-cs4"/>
                 <outlet property="saveButton" destination="mW4-Jz-sic" id="1Uj-nU-EU1"/>
                 <outlet property="shareButton" destination="zlw-H0-WcJ" id="OZv-z0-8s8"/>
+                <outlet property="sizeSlider" destination="rtr-gk-uxr" id="7j6-zT-29G"/>
                 <outlet property="stickerButton" destination="PLX-iy-2Rc" id="tzt-tW-R1r"/>
                 <outlet property="textButton" destination="0wH-LJ-SyD" id="ofN-bp-ZaE"/>
                 <outlet property="topGradient" destination="rLz-36-0xz" id="0Yd-em-MMy"/>
@@ -72,7 +73,7 @@
                         <constraint firstItem="5rw-9v-ExQ" firstAttribute="leading" secondItem="S1Y-ZS-dct" secondAttribute="leading" id="v73-ro-BkR"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLz-36-0xz" customClass="GradientView" customModule="iOSPhotoEditor" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLz-36-0xz" customClass="GradientView" customModule="Photo_Editor" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -158,7 +159,7 @@
                         <constraint firstItem="9an-1W-thw" firstAttribute="leading" secondItem="3MS-N5-3xY" secondAttribute="leading" constant="12" id="lPL-cU-BVr"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGa-1B-gkO" customClass="GradientView" customModule="iOSPhotoEditor" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGa-1B-gkO" customClass="GradientView" customModule="Photo_Editor" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="782" width="414" height="80"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -268,29 +269,52 @@
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy8-ap-fH9" userLabel="Color Picker">
-                    <rect key="frame" x="0.0" y="846" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="760" width="414" height="102"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GaQ-XR-asZ">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="25X-Kn-avj"/>
-                            </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7jl-DS-5B7">
-                                <size key="itemSize" width="50" height="50"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                            <cells/>
-                        </collectionView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-8Z-oSj">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-co-Xtd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
+                                    <subviews>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="35" translatesAutoresizingMaskIntoConstraints="NO" id="rtr-gk-uxr">
+                                            <rect key="frame" x="18" y="8" width="378" height="47"/>
+                                            <connections>
+                                                <action selector="sliderChanged:" destination="-1" eventType="valueChanged" id="5ny-Y0-lh4"/>
+                                            </connections>
+                                        </slider>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="rtr-gk-uxr" firstAttribute="top" secondItem="QdW-co-Xtd" secondAttribute="top" constant="8" id="Dz6-Rd-HV9"/>
+                                        <constraint firstAttribute="trailing" secondItem="rtr-gk-uxr" secondAttribute="trailing" constant="20" id="O97-B0-wIG"/>
+                                        <constraint firstAttribute="bottom" secondItem="rtr-gk-uxr" secondAttribute="bottom" constant="8" id="l4e-gf-tcL"/>
+                                        <constraint firstItem="rtr-gk-uxr" firstAttribute="leading" secondItem="QdW-co-Xtd" secondAttribute="leading" constant="20" id="oG3-ln-UKs"/>
+                                    </constraints>
+                                </view>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GaQ-XR-asZ">
+                                    <rect key="frame" x="0.0" y="62" width="414" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="25X-Kn-avj"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7jl-DS-5B7">
+                                        <size key="itemSize" width="50" height="50"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <cells/>
+                                </collectionView>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="GaQ-XR-asZ" firstAttribute="leading" secondItem="Cy8-ap-fH9" secondAttribute="leading" id="5uh-Qw-RZB"/>
-                        <constraint firstAttribute="height" constant="50" id="KBh-Ry-wrN"/>
-                        <constraint firstItem="GaQ-XR-asZ" firstAttribute="top" secondItem="Cy8-ap-fH9" secondAttribute="top" id="LEF-vO-2nq"/>
-                        <constraint firstAttribute="trailing" secondItem="GaQ-XR-asZ" secondAttribute="trailing" id="ZAL-PE-sPi"/>
+                        <constraint firstItem="oI4-8Z-oSj" firstAttribute="leading" secondItem="Cy8-ap-fH9" secondAttribute="leading" id="4i9-pn-4pw"/>
+                        <constraint firstAttribute="bottom" secondItem="oI4-8Z-oSj" secondAttribute="bottom" id="5zW-RA-BPj"/>
+                        <constraint firstAttribute="trailing" secondItem="oI4-8Z-oSj" secondAttribute="trailing" id="K8L-Xe-88V"/>
+                        <constraint firstItem="oI4-8Z-oSj" firstAttribute="top" secondItem="Cy8-ap-fH9" secondAttribute="top" id="dZG-KU-JuF"/>
                     </constraints>
                 </view>
             </subviews>
@@ -314,7 +338,7 @@
                 <constraint firstAttribute="trailing" secondItem="87h-1G-t5q" secondAttribute="trailing" id="kaD-bR-ZZt"/>
                 <constraint firstItem="S1Y-ZS-dct" firstAttribute="centerY" secondItem="HPk-Bg-V0q" secondAttribute="centerY" id="lCZ-Hj-EUs"/>
                 <constraint firstAttribute="trailing" secondItem="rLz-36-0xz" secondAttribute="trailing" id="moc-tG-rwG"/>
-                <constraint firstAttribute="bottom" secondItem="Cy8-ap-fH9" secondAttribute="bottom" id="mok-x4-xHA"/>
+                <constraint firstItem="ymm-th-TTo" firstAttribute="bottom" secondItem="Cy8-ap-fH9" secondAttribute="bottom" id="mok-x4-xHA"/>
                 <constraint firstItem="ymm-th-TTo" firstAttribute="bottom" secondItem="yAt-sK-1nK" secondAttribute="bottom" constant="12" id="of3-AC-FQE"/>
                 <constraint firstItem="rLz-36-0xz" firstAttribute="leading" secondItem="HPk-Bg-V0q" secondAttribute="leading" id="orL-eE-RPq"/>
                 <constraint firstItem="ymm-th-TTo" firstAttribute="bottom" secondItem="ZGa-1B-gkO" secondAttribute="bottom" id="uXH-MJ-Z8t"/>

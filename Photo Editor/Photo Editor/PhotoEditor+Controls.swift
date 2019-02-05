@@ -38,10 +38,21 @@ extension PhotoEditorViewController {
     }
 
     @IBAction func stickersButtonTapped(_ sender: Any) {
+        
         addStickersViewController()
+    
     }
 
+    
+    @IBAction func sliderChanged(_ sender: Any) {
+    
+        drawSize = CGFloat(sizeSlider.value)
+        
+    }
+    
+    
     @IBAction func drawButtonTapped(_ sender: Any) {
+        sizeSlider.isHidden = false
         isDrawing = true
         canvasImageView.isUserInteractionEnabled = false
         doneButton.isHidden = false
@@ -50,6 +61,7 @@ extension PhotoEditorViewController {
     }
 
     @IBAction func textButtonTapped(_ sender: Any) {
+        sizeSlider.isHidden = true
         isTyping = true
         let textView = UITextView(frame: CGRect(x: 0, y: canvasImageView.center.y,
                                                 width: UIScreen.main.bounds.width, height: 30))
