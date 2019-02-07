@@ -164,7 +164,12 @@ extension PhotoEditorViewController: ColorDelegate {
     
     func getSelectedColor() -> UIColor {
     
-        return drawColor
+        if isDrawing {
+            return drawColor
+        } else  {
+           
+            return textColor
+        }
     
     }
     
